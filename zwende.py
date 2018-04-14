@@ -1,17 +1,13 @@
 #!/usr/bin/env python
 
-import binascii
-
 BINARY_ONE = '\u200c'  # Zero Width Joiner (ZWJ)
 BINARY_ZERO = '\u200d'  # Zero Width Non-Joiner (JWNJ)
-#BINARY_ONE = '\u00a9'
-#BINARY_ZERO = '\u00ae'
 UNICODE_FORMAT = 'utf-8'
 
 
 def enzero(text_to_hide: str, plain_text: str):
     # Convert text_to_hide into string of binary digits
-    binary_text = bin(int.from_bytes(text_to_hide.encode(), 'big'))
+    binary_text = bin(int.from_bytes(text_to_hide.encode(UNICODE_FORMAT), 'big'))
 
     # Convert binary_text to zero width character equivalents
     zw_encoded_message = ""
@@ -44,10 +40,9 @@ def dezero(encrypted_text: str):
         elif char == BINARY_ONE:
             binary_string += '1'
 
-    # Convert binary_string into ASCII
-    binary_string = int(binary_string, 2)
-    print("binary_string  type = {}".format(type(binary_string)))
-    return_to_text = binary_string.to_bytes((binary_string.bit_length() + 7 // 8), 'big').decode()
+    # Convert binary_string into Unicode
+    binary_int = int(binary_string, 2)
+    return_to_text = binary_int.to_bytes((binary_int.bit_length() + 7) // 8, 'big').decode(UNICODE_FORMAT)
 
     return return_to_text
 
@@ -63,9 +58,6 @@ def main():
     user_inputted_message = input("Paste in the message with the embedded hidden message: ")
     exposed_message = dezero(user_inputted_message)
     print("The hidden message is:\n{}".format(exposed_message))
-
-    for c in exposed_message:
-        print("c = {}".format(ord(c)))
 
 
 if __name__ == "__main__":
