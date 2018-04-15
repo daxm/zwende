@@ -10,20 +10,18 @@ def enzero(text_to_hide: str, plain_text: str):
     binary_text = bin(int.from_bytes(text_to_hide.encode(UNICODE_FORMAT), 'big'))
 
     # Convert binary_text to zero width character equivalents
-    zw_encoded_message = ""
+    encoded_array = []
     for char in binary_text:
         if char == '1':
-            zw_encoded_message += BINARY_ONE
+            encoded_array.append(BINARY_ONE)
         elif char == '0':
-            zw_encoded_message += BINARY_ZERO
+            encoded_array.append(BINARY_ZERO)
+    zw_encoded_message = ''.join(encoded_array)
 
-    """
-    Insert the text_to_hide right before the first "space" in plain_text.
-    If there is no space in the plain_text then append to end.
-    """
-    position = plain_text.find(" ")
-    if position > 0:
-        encrypted_text = plain_text[:position + 1] + str(zw_encoded_message) + plain_text[position + 1:]
+    # Insert the text_to_hide right before the first "space" in plain_text.
+    # If there is no space in the plain_text then append to end.
+    if ' ' in plain_text:
+        encrypted_text = plain_text.replace(' ', ' {}'.format(zw_encoded_message), 1)
     else:
         encrypted_text = plain_text + zw_encoded_message
 
