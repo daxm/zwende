@@ -15,5 +15,9 @@ output = enzero(hidden_message, message)
 This will scrub the provided text for zero width characters and try to "decode" them using our enzero encoding method.
 
 ```python
-hiddent_message = dezero(message)
+hidden_message = dezero(message)
 ```
+
+## Sample tests
+I expect you'd more than likely import zwende.py into your own applications.
+However, if you run it directly via Python you can play with the functions via the user dialog system built into the main() routine.
