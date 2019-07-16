@@ -6,10 +6,10 @@ __license__ = "BSD"
 
 setup(
     name='zwende',
-    version='20190716.0',
+    version='20190716.1',
     description="Zero width character encoder/decoder.",
     long_description="""Sometimes it is beneficial to hide a 'plain text' message within plain text.  This module will
-    do just that.'""",
+    do just that.""",
     url='https://github.com/daxm/zwende',
     author='Dax Mickelson',
     author_email='dmickels@cisco.com',
