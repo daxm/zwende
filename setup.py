@@ -20,7 +20,7 @@ setup(
         'Intended Audience :: Developers',
         'Intended Audience :: Education',
         'Intended Audience :: End Users/Desktop',
-        'Intended Audience:: Other Audience'
+        'Intended Audience :: Other Audience',
         'Intended Audience :: System Administrators',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
